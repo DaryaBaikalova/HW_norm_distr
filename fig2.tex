@@ -1,30 +1,30 @@
 % This file was created by tikzplotlib v0.9.2.
 \begin{tikzpicture}
 
-\definecolor{color0}{rgb}{0.886274509803922,0.290196078431373,0.2}
-\definecolor{color1}{rgb}{0.203921568627451,0.541176470588235,0.741176470588235}
-\definecolor{color2}{rgb}{0.596078431372549,0.556862745098039,0.835294117647059}
+\definecolor{color0}{rgb}{0.0, 0.0, 0.0}
+\definecolor{color1}{rgb}{1.0, 0.0, 0.5}
+\definecolor{color2}{rgb}{1.0, 0.41, 0.12}
 
 \begin{axis}[
-axis background/.style={fill=white!89.8039215686275!black},
-axis line style={white},
 legend cell align={left},
-legend style={fill opacity=0.8, draw opacity=1, text opacity=1, draw=white!80!black, fill=white!89.8039215686275!black},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, draw=white!80!black},
 tick align=outside,
 tick pos=left,
-title={\(\displaystyle f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}} e ^ {-\frac{(x-\mu)^2}{2\sigma^2}}\)},
-x grid style={white},
+x grid style={white!69.0196078431373!black},
 xlabel={x},
-xmajorgrids,
 xmin=-5.5, xmax=5.5,
-xtick style={color=white!33.3333333333333!black},
-y grid style={white},
+xtick style={color=black},
+y grid style={white!69.0196078431373!black},
 ylabel={\(\displaystyle f_X(x)\)},
-ymajorgrids,
 ymin=-0.0199379576580956, ymax=0.418697111020972,
-ytick style={color=white!33.3333333333333!black}
+ytick style={color=black},
+xtick = {-5,-4,-3,-2,-1,0,1,2,3,4,5},
+ytick = {0.1,0.15,0.2,0.25,0.3,0.35,0.4},
+x label style={at={(axis description cs:0.5,-0.05)},anchor=north},
+    y label style={at={(axis description cs:-0.03,.5)},rotate=0,anchor=south},
+width=21cm, height=16cm % размеры картинки
 ]
-\path [draw=black, fill=black, very thin]
+\path [draw=black, fill=black]
 (axis cs:1.3,0.38)
 --(axis cs:1.25,0.375)
 --(axis cs:1.25,0.3795)
@@ -33,7 +33,7 @@ ytick style={color=white!33.3333333333333!black}
 --(axis cs:1.25,0.3805)
 --(axis cs:1.25,0.385)
 --cycle;
-\path [draw=black, fill=black, very thin]
+\path [draw=black, fill=black]
 (axis cs:-1.3,0.38)
 --(axis cs:-1.25,0.385)
 --(axis cs:-1.25,0.3805)
@@ -42,7 +42,7 @@ ytick style={color=white!33.3333333333333!black}
 --(axis cs:-1.25,0.3795)
 --(axis cs:-1.25,0.375)
 --cycle;
-\addplot [thick, color0]
+\addplot [line width = 1.5mm, color0]
 table {%
 -5 1.4867195147343e-06
 -4.8989898989899 2.45106104294233e-06
@@ -146,7 +146,7 @@ table {%
 5 1.4867195147343e-06
 };
 \addlegendentry{$\mu = 0$}
-\addplot [thick, color1]
+\addplot [line width = 1.5mm, color1]
 table {%
 -5 9.13472040836459e-12
 -4.8989898989899 1.84313269683253e-11
@@ -250,7 +250,7 @@ table {%
 5 0.00443184841193801
 };
 \addlegendentry{$\mu = \mu_0 = 2$}
-\addplot [thick, color2]
+\addplot [line width = 1.5mm, color2]
 table {%
 -5 0.00443184841193801
 -4.8989898989899 0.00596999164887267
