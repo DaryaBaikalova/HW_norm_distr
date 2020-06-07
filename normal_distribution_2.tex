@@ -1,0 +1,174 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{cmap}	
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usepackage[left=3cm,right=3cm,
+top=1cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\usepackage{icomma} 
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usetikzlibrary{patterns}
+
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	linkbordercolor={0 0 1}
+}
+\renewcommand{\textfraction}{0.10}
+\renewcommand\lstlistingname{Algorithm}
+\renewcommand\lstlistlistingname{Algorithms}
+\def\lstlistingautorefname{Alg.}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+\pagestyle{fancyplain}
+\headheight 15pt              
+\rhead{\text{\large Вывод нормального распределения}}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 2em
+
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+
+
+
+
+
+\begin{document}
+	Предпосылки:
+	\begin{enumerate}
+		\item Закон распределения инвариантен к повороту
+		\item Координаты в ортогональном базисе независимы
+		\item Функция совместной плотности непрерывна
+	\end{enumerate}
+\begin{minipage}{.5\textwidth}
+		Пусть $ X, Y $ - случайные величины\\
+		\begin{itemize}
+		\item $ \left(X; Y \right)_e $ - вектор в базисе $ \left\lbrace e_1, e_2 \right\rbrace  $
+		\item $ \left(Y; -X \right)_f $ - вектор в базисе $ \left\lbrace f_1, f_2 \right\rbrace  $ 
+		\end{itemize}
+\end{minipage}
+	\begin{minipage}{.5\textwidth}
+	\begin{tikzpicture}[scale=0.15]
+	\draw[<->] (0,15)node[above] {$e_2$} -- (0,0) -- (15,0)node[below] {$e_1$};
+	\draw[<->] (40,15)node[above] {$f_1=e_2$} -- (40,0) -- (25,0)node[below] {$f_2=-e_1$};
+	\end{tikzpicture} 
+\end{minipage}
+Будем считать, что существуют $\E(X), \E(Y), \Var(X), \Var(Y)$, тогда:\\
+\begin{minipage}{.3\textwidth}
+	
+		\[
+		\begin{cases}
+		\E(X)=\E(Y)\\
+		\E(X)=-\E(Y)
+		\end{cases}
+		\]
+		
+\end{minipage}
+\begin{minipage}{.7\textwidth}
+	\[
+	\Rightarrow \quad \E(X)=-\E(X) \quad \Rightarrow \quad \E(X)=\E(Y)=0; \quad \Var(X)=\Var(Y)
+	\]
+\end{minipage}
+\vspace{0.1 in} 
+\\
+Из 2-ой предпосылки совместная функция плотности случайных величин $X, Y$:
+\[f_{X,Y}=f_X(x)f_Y(y)\]
+
+В силу инвариантности к повороту (1-ая предпосылка) функция плотности зависит только от длины вектора $(X, Y)^T$:
+\[f_X(x)=f_Y(x) \quad \Rightarrow \quad X \sim Y \sim (-X)  \]
+\[\Rightarrow \quad f_X(x) \quad \text{симметрична относительно нуля} \Rightarrow \quad f_X(x)=g(x^2) \]
+\vspace{0.05 in} 
+\\
+Пусть $f_{XY}(x,y)=h(x^2+y^2)=g(x^2)g(y^2)$, рассмотрим $h(x^2+y^2)$:
+\[ \ln h(x^2+y^2)= \ln g(x^2)+\ln g(y^2)\]
+\[\ln h(x^2) = \ln g(x^2) + C, \quad \text{где} \quad C=\ln g(0)-\text{const} \]
+\[ \ln g(x^2) = \ln h(x^2) - C\]
+\vspace{0.05 in} 
+\\
+Заметим, что:
+\[ \ln g(nx^2) = \ln h(nx^2) - C= \ln h ((n-1)x^2+x^2) - C = \ln g ((n-1)x^2)+  \ln g(x^2) - C =\]
+\[= \ln h((n-1)x^2) - C + \ln g(x^2) - C = \ln g((n-2)x^2) + 2\ln g(x^2) - 2C = ...=\]
+\[=\ln g(0) + n\ln g(x^2)-nC=n\ln g(x^2)-(n-1)C\]
+\vspace{0.05 in} 
+\\
+Пусть $x^2=a$, тогда функция $\tilde{g}(a)=\ln g(a)$ обладает свойством:
+\[\tilde{g}(na)=n\tilde{g}(a)-(n-1)C\]
+Тогда:
+\[\tilde{g}(na)-C=n\tilde{g}(a)-nC=n(\tilde{g}(a)-C)\]
+\vspace{0.05 in} 
+\\
+Предположим, что:
+\[\tilde{g}(a)=\ln g(a) =ka + C\]
+\vspace{0.05 in} 
+\\
+Покажем, что такая функия удовлетворяет свойствам $\tilde{g}(a)$:
+\[\tilde{g}(na)=nka+C=nka+nC-(n-1)C=n(ka-C)-(n-1)C=n\tilde{g}(a)-(n-1)C\]
+\vspace{0.05 in} 
+\\
+Тогда:
+\[ \ln g(x^2) = kx^2+C\]
+\[g(x^2)=e^{kx^2+c}=e^{kx^2}e^C\]
+Значит,
+\[f_X(x)=e^{kx^2}e^C\]
+\vspace{0.05 in} 
+\\
+Из свойств функции плотности найдем $C$ и $k$:
+\[\displaystyle \int_{-\infty}^{\infty} e^{kx^2}e^C dx= 1\]
+\[e^C \displaystyle \int_{-\infty}^{\infty} e^{kx^2} dx= e^C \dfrac{\sqrt{\pi}}{\sqrt{-k}}=1 \]
+\[e^C = \dfrac{\sqrt{-k}}{\sqrt{\pi}}\]
+\[f_X(x)=\dfrac{\sqrt{-k}}{\sqrt{\pi}} e^{kx^2}, k<0\]
+Сделаем замену $\lambda = \dfrac{\sqrt{-k}}{\sqrt{\pi}}$, тогда $f_X(x)=\lambda e^{-\pi{\lambda}^2x^2}$
+\vspace{0.4 in} 
+\\
+
+\begin{tikzpicture}
+	\input{fig1.tex}
+\end{tikzpicture}
+
+Таким образом видно, что с ростом $\lambda$ дисперсия уменьшается.
+\[\E(X)=0 \Rightarrow (\E(X))^2=0 \Rightarrow \sigma^2=\Var(X)=\E(X^2) \]
+\[\sigma^2 = \displaystyle \int_{-\infty}^{\infty} x^2 f(x) dx = 
+\displaystyle \int_{-\infty}^{\infty} x^2 \lambda e^{-\pi{\lambda}^2x^2}  dx =
+	\lambda \displaystyle \int_{-\infty}^{\infty} x\cdot x \cdot e^{-\pi{\lambda}^2x^2} dx =\]
+\[ 
+\left[\begin{matrix} u=x \quad \quad \quad \quad \quad du=dx\\ dv= x e^{-\pi{\lambda}^2x^2} dx \quad v=\frac{-1}{2\pi\lambda^2}e^{-\pi{\lambda}^2x^2}\end{matrix}\right]
+\]
+\[=\lambda \left( uv \bigg|_{-\infty}^{\infty}- \displaystyle \int_{-\infty}^{\infty} vdu \right) = \lambda \left( -\frac{x}{2\pi\lambda^2}e^{-\pi{\lambda}^2x^2} \bigg|_{-\infty}^{\infty} + \displaystyle \int_{-\infty}^{\infty} \frac{1}{2\pi\lambda^2}e^{-\pi{\lambda}^2x^2} dx \right)\]
+Так как $e^{x^2}$ растет быстрее, чем $x$ при $x \rightarrow \pm \infty$
+\[\lim\limits_{x\to \pm \infty} \frac{x}{2\pi\lambda^2}e^{-\pi{\lambda}^2x^2} = 
+\frac{1}{2\pi\lambda^2}\lim\limits_{x\to\infty} \frac{x}{ e^{-\pi{\lambda}^2x^2}}=0\]
+Тогда:
+\[\sigma^2 = \lambda \displaystyle \int_{-\infty}^{\infty} \frac{1}{2\pi\lambda^2}e^{-\pi{\lambda}^2x^2} dx = \dfrac{1}{2\pi\lambda^2} \]
+\[\lambda^2 = \dfrac{1}{2\pi\sigma^2} \Rightarrow \lambda = \dfrac{1}{\sqrt{2\pi\sigma^2}} \]
+\[\Rightarrow f_X(x)=\dfrac{1}{\sqrt{2\pi\sigma^2}} e ^ {-\frac{x^2}{2\sigma^2}}, X \sim \mathcal{N}(0, \sigma^2)\]
+Пусть $Z=X-\mu$, тогда:
+\[f(z)=f(x-\mu)=\dfrac{1}{\sqrt{2\pi\sigma^2}} e ^ {-\frac{(x-\mu)^2}{2\sigma^2}} \sim \mathcal{N}(\mu, \sigma^2)\]
+\vspace{0.4 in} 
+\\
+
+	\begin{tikzpicture}
+		\input{fig2.tex}
+	\end{tikzpicture}
+
+\end{document}
